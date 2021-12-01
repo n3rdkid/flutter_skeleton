@@ -1,5 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -11,10 +12,13 @@ void main() => runApp(
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      useInheritedMediaQuery: true, // Set to true
-      locale: DevicePreview.locale(context), // Add the locale here
-      home: const MyHomePage(title: 'TEST'),
+    return ScreenUtilInit(
+      designSize: const Size(360, 640),
+      builder: () => MaterialApp(
+        useInheritedMediaQuery: true, // Set to true
+        locale: DevicePreview.locale(context), // Add the locale here
+        home: const MyHomePage(title: 'TEST'),
+      ),
     );
   }
 }
@@ -28,39 +32,152 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+        appBar: AppBar(
+          title: Text(widget.title),
         ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Sign up to Skeleton",
+                  style:
+                      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                ),
+                Wrap(
+                  children: [
+                    Text(
+                      "Already have an account? ",
+                      style: TextStyle(
+                          fontSize: 14.sp, fontWeight: FontWeight.w600),
+                    ),
+                    SizedBox(height: 4.h),
+                    Text(
+                      "Login",
+                      style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blueAccent),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 24.h),
+                const CustomTextField(
+                  hintText: 'First Name',
+                ),
+                SizedBox(height: 16.h),
+                const CustomTextField(
+                  hintText: 'Email',
+                ),
+                SizedBox(height: 16.h),
+                const CustomTextField(
+                  obscureText: true,
+                  hintText: 'Password',
+                ),
+                SizedBox(height: 16.h),
+                const CustomTextField(
+                  obscureText: true,
+                  hintText: 'Confirm Password',
+                ),
+                SizedBox(height: 16.h),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                        padding:
+                            MaterialStateProperty.all(EdgeInsets.all(14.h)),
+                        textStyle: MaterialStateProperty.all(TextStyle(
+                            fontSize: 14.h, fontWeight: FontWeight.w700))),
+                    child: const Text('Create Account'),
+                  ),
+                ),
+                SizedBox(height: 16.h),
+                Row(children: [
+                  Expanded(child: Divider()),
+                  SizedBox(width: 16.w),
+                  Text('or sign up with',
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  SizedBox(width: 16.w),
+                  Expanded(child: Divider()),
+                ]),
+                SizedBox(height: 16.h),
+                SizedBox(
+                  width: double.infinity,
+                  child: TextButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      side: MaterialStateProperty.all(
+                        const BorderSide(color: Colors.black12),
+                      ),
+                      foregroundColor: MaterialStateProperty.all(Colors.black),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(14.h)),
+                      textStyle: MaterialStateProperty.all(
+                        TextStyle(fontSize: 14.h, fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.g_mobiledata,
+                          size: 24.sp,
+                        ),
+                        SizedBox(width: 10.w),
+                        const Text('Google'),
+                      ],
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
+  }
+}
+
+class CustomTextField extends StatelessWidget {
+  const CustomTextField({
+    Key? key,
+    this.obscureText = false,
+    this.hintText = '',
+  }) : super(key: key);
+
+  final String hintText;
+  final bool obscureText;
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: Colors.transparent, width: 0),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8.r),
+          borderSide: const BorderSide(color: Colors.transparent, width: 0),
+        ),
+        filled: true,
+        fillColor: Colors.grey.shade100,
+        hintText: hintText,
+        hintStyle: TextStyle(
+          fontSize: 14.sp,
+          fontWeight: FontWeight.w400,
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
