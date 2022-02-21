@@ -6,11 +6,13 @@ import 'package:flutter_skeleton/models/user.dart';
 void main() => runApp(
       DevicePreview(
         enabled: true,
-        builder: (context) => MyApp(), // Wrap your app
+        builder: (context) => const MyApp(),
       ),
     );
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
@@ -37,7 +39,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Map<String, dynamic> userInfo = {'first_name': null};
     final User user = User.fromJson(userInfo);
-    print(user);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -106,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 SizedBox(height: 16.h),
                 Row(children: [
-                  Expanded(child: Divider()),
+                  const Expanded(child: Divider()),
                   SizedBox(width: 16.w),
                   Text('or sign up with',
                       style: TextStyle(
@@ -114,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         fontWeight: FontWeight.w500,
                       )),
                   SizedBox(width: 16.w),
-                  Expanded(child: Divider()),
+                  const Expanded(child: Divider()),
                 ]),
                 SizedBox(height: 16.h),
                 SizedBox(
