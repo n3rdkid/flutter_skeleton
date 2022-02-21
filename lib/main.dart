@@ -57,13 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 Wrap(
                   children: [
                     Text(
-                      "Already have an account? ",
+                      'Already have an account? ',
                       style: TextStyle(
                           fontSize: 14.sp, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 4.h),
                     Text(
-                      "Login",
+                      'Login',
                       style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w600,

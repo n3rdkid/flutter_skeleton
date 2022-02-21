@@ -4,8 +4,6 @@ analyzer:
   exclude:
     - "**/*.g.dart"
     - "**/*.freezed.dart"
-  errors:
-    invalid_annotation_target: ignore
 
 linter:
   # The lint rules applied to this project can be customized in the
@@ -17,6 +15,7 @@ linter:
   rules:
     sort_constructors_first: true
     prefer_single_quotes: true
+    invalid_annotation_target: false
       
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
