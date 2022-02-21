@@ -36,10 +36,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   device_preview: ^0.8.0
   flutter_screenutil: ^5.0.1
+  freezed_annotation: ^0.15.0
+  json_annotation: ^4.4.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  freezed: ^0.15.1+1
+  json_serializable: ^6.1.4
+  
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -47,6 +52,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  build_runner: ^2.1.7
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

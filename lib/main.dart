@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_skeleton/models/user.dart';
 
 void main() => runApp(
       DevicePreview(
@@ -34,6 +35,9 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> userInfo = {'first_name': null};
+    final User user = User.fromJson(userInfo);
+    print(user);
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
@@ -45,7 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Sign up to Skeleton",
+                  user.firstName,
                   style:
                       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                 ),
